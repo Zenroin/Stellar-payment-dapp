@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StellarPay — Simple Payment dApp (Testnet)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">✦</span>
+      <span class="brand-name">StellarPay</span>
+      <span class="net-badge">TESTNET</span>
+    </div>
+    <div class="wallet-area">
+      <button id="btn-connect" class="btn btn-primary">Connect Freighter</button>
+      <div id="wallet-chip" class="wallet-chip hidden">
+        <span class="dot"></span>
+        <span id="wallet-address" title=""></span>
+        <button id="btn-disconnect" class="btn btn-ghost">Disconnect</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Send XLM on the Stellar testnet</h1>
+      <p class="sub">Connect your Freighter wallet, check your balance, and make a test payment — no real funds involved.</p>
+    </section>
+
+    <div id="network-warning" class="banner banner-warn hidden">
+      Freighter is not on <strong>Testnet</strong>. Open Freighter → network selector → choose <strong>Test Net</strong>, then reconnect.
+    </div>
+
+    <section class="grid">
+      <!-- Balance card -->
+      <div class="card">
+        <div class="card-head">
+          <h2>Balance</h2>
+          <button id="btn-refresh" class="btn btn-ghost" disabled>Refresh</button>
+        </div>
+        <div class="balance-display">
+          <span id="balance-value">—</span>
+          <span class="unit">XLM</span>
+        </div>
+        <p id="balance-note" class="muted">Connect your wallet to see your balance.</p>
+        <button id="btn-fund" class="btn btn-secondary" disabled>Fund with Friendbot (testnet)</button>
+      </div>
+
+      <!-- Payment card -->
+      <div class="card">
+        <div class="card-head">
+          <h2>Send payment</h2>
+        </div>
+        <label class="field">
+          <span>Destination address</span>
+          <input id="input-dest" type="text" placeholder="G..." autocomplete="off" spellcheck="false" />
+        </label>
+        <label class="field">
+          <span>Amount (XLM)</span>
+          <input id="input-amount" type="number" min="0.0000001" step="0.0000001" placeholder="10" />
+        </label>
+        <label class="field">
+          <span>Memo (optional)</span>
+          <input id="input-memo" type="text" maxlength="28" placeholder="thanks!" />
+        </label>
+        <button id="btn-send" class="btn btn-primary btn-block" disabled>Send XLM</button>
+      </div>
+    </section>
+
+    <!-- Transaction status -->
+    <section id="tx-status" class="card tx-card hidden">
+      <div class="card-head"><h2>Transaction result</h2></div>
+      <div id="tx-body"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Built for the Rise In · Stellar Journey to Mastery — Level 1 (White Belt) ·
+    <a href="https://developers.stellar.org" target="_blank" rel="noreferrer">Stellar Docs</a>
+  </footer>
+
+  <!-- Stellar SDK + Freighter API (browser bundles) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/11.3.0/stellar-sdk.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stellar-freighter-api/4.1.0/index.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

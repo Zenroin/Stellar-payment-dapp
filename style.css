@@ -1,0 +1,232 @@
+/* ── StellarPay — deep-space palette ─────────────────────────── */
+:root {
+  --bg: #0b0e1a;          /* deep space navy */
+  --surface: #141a2e;     /* card surface */
+  --surface-2: #1c2440;   /* raised surface */
+  --line: #2a3357;        /* borders */
+  --text: #e8ecf8;        /* primary text */
+  --muted: #8a93b5;       /* secondary text */
+  --accent: #7ab8ff;      /* stellar blue */
+  --accent-strong: #3d8bfd;
+  --gold: #ffd166;        /* star gold */
+  --ok: #4ade80;
+  --err: #f87171;
+  --warn-bg: #3a2f13;
+  --warn-line: #806418;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(4px);
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { color: var(--gold); font-size: 20px; }
+.brand-name { font-weight: 700; letter-spacing: 0.02em; font-size: 18px; }
+.net-badge {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 2px 8px;
+  letter-spacing: 0.08em;
+}
+
+.wallet-area { display: flex; align-items: center; gap: 10px; }
+
+.wallet-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 8px 6px 14px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+}
+.wallet-chip .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 8px var(--ok);
+}
+
+/* ── Layout ──────────────────────────────────────────────────── */
+.container {
+  width: min(920px, 100% - 40px);
+  margin: 0 auto;
+  flex: 1;
+}
+
+.hero { text-align: center; padding: 48px 0 28px; }
+.hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 700; }
+.hero .sub { color: var(--muted); margin-top: 10px; font-size: 16px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+/* ── Cards ───────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.card h2 { font-size: 17px; font-weight: 700; }
+
+.balance-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: "IBM Plex Mono", monospace;
+  margin: 8px 0 6px;
+}
+#balance-value { font-size: 40px; font-weight: 500; color: var(--accent); }
+.unit { color: var(--muted); font-size: 15px; }
+
+.muted { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+
+/* ── Forms ───────────────────────────────────────────────────── */
+.field { display: block; margin-bottom: 14px; }
+.field span {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.field input {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 13px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  transition: border-color 0.15s;
+}
+.field input:focus { outline: none; border-color: var(--accent); }
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.btn-primary { background: var(--accent-strong); color: #fff; }
+.btn-primary:not(:disabled):hover { background: #2f7bec; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.btn-secondary:not(:disabled):hover { background: rgba(122, 184, 255, 0.1); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--line);
+  padding: 6px 12px;
+  font-size: 13px;
+}
+.btn-ghost:not(:disabled):hover { color: var(--text); }
+
+.btn-block { width: 100%; margin-top: 4px; }
+
+/* ── Banners & tx status ─────────────────────────────────────── */
+.banner {
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.banner-warn {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  color: var(--gold);
+}
+
+.tx-card { margin-top: 20px; }
+.tx-line { font-size: 14px; margin-bottom: 8px; }
+.tx-ok { color: var(--ok); font-weight: 700; }
+.tx-err { color: var(--err); font-weight: 700; }
+.tx-hash {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  word-break: break-all;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 8px 0;
+}
+.tx-card a { color: var(--accent); }
+
+.spinner {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: -2px;
+  margin-right: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+
+.hidden { display: none !important; }
+
+.foot {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 28px 16px;
+}
+.foot a { color: var(--accent); }
