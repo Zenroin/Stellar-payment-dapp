@@ -38,7 +38,7 @@ Because browser extensions don't inject into `file://` pages, serve the folder w
 
 ```bash
 # clone the repo
-git clone https://github.com/<your-username>/stellar-payment-dapp.git
+git clone https://github.com/Zenroin/Stellar-payment-dapp.git
 cd stellar-payment-dapp
 
 # option 1 — Python
